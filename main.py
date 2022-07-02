@@ -1,16 +1,17 @@
 import io
 import logging
 import os
-import requests
 
 import pyrogram
+import requests
 import snscrape.modules.twitter as sntwitter
 from pyrogram.types import InputMediaPhoto
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 logging.getLogger("snscrape").setLevel(logging.WARNING)
-app = pyrogram.Client("twitterUserbot", api_id=os.environ["API_ID"], api_hash=os.environ["API_HASH"])
+app = pyrogram.Client("twitterUserbot", api_id=os.environ["API_ID"], api_hash=os.environ["API_HASH"],
+                      session_string=os.environ["SESSION_STRING"])
 
 
 @app.on_message(pyrogram.filters.outgoing & pyrogram.filters.regex(
