@@ -1,7 +1,7 @@
 import io
 import logging
 import os
-import urllib.request
+import requests
 
 import pyrogram
 import snscrape.modules.twitter as sntwitter
@@ -24,7 +24,7 @@ async def _(client: pyrogram.Client, message: pyrogram.types.Message):
                 if len(tweet.media) == 1:
                     album.append(media.fullUrl)
                 else:
-                    img = io.BytesIO(urllib.request.urlopen(media.fullUrl).read())
+                    img = io.BytesIO(requests.get(media.fullUrl).content)
                     img.name = "image.jpg"
                     album.append(InputMediaPhoto(img, message.text if media == tweet.media[0] else ""))
         if not album:
