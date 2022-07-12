@@ -1,3 +1,5 @@
-*.session
+*.session*
 venv/
 .idea/
+.vscode/
+pyproject.toml
